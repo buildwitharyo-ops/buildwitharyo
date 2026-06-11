@@ -6,7 +6,7 @@ Drop a screenshot for each project here using these exact filenames
 - `rituals.png` — Rituals Coffee
 - `acta.png` — ACTA Instalasi Audiovisual
 - `avion.png` — Avion Display
-- `acta-os.png` — ACTA OS
+- `acta-os-dashboard.png` — ACTA OS
 - `speakup.png` — SpeakUp Mandarin
 - `kosmanager.png` — KosManager
 

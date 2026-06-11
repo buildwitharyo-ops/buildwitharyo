@@ -76,7 +76,7 @@ export function Hero() {
         <div className="absolute left-1/2 bottom-[60px] h-[420px] w-[620px] -translate-x-1/2 rounded-full bg-grape-light/25 blur-[120px]" />
         <div className="absolute left-1/2 bottom-[-420px] h-[1300px] w-[1300px] -translate-x-1/2 rounded-full border-[90px] border-white/[0.04]" />
         <div className="absolute left-1/2 bottom-[-680px] h-[1900px] w-[1900px] -translate-x-1/2 rounded-full border-[110px] border-white/[0.04]" />
-        <div className="absolute left-1/2 top-[52%] h-[520px] w-[1100px] -translate-x-1/2 rounded-full border border-white/10" />
+        <div className="absolute left-1/2 top-[52%] hidden h-[520px] w-[1100px] -translate-x-1/2 rounded-full border border-white/10 lg:block" />
         <div className="absolute -top-32 left-[6%] h-[480px] w-44 -rotate-[35deg] bg-gradient-to-b from-white/[0.05] to-transparent blur-sm" />
         <div className="absolute -top-32 right-[6%] h-[480px] w-44 rotate-[35deg] bg-gradient-to-b from-white/[0.05] to-transparent blur-sm" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(10,2,24,0.55),transparent_50%)]" />
@@ -105,7 +105,7 @@ export function Hero() {
             width={1024}
             height={1536}
             priority
-            className="h-auto w-[235px] max-w-none sm:w-[320px] lg:w-[430px]"
+            className="h-auto w-[255px] max-w-none sm:w-[320px] lg:w-[430px]"
           />
         </motion.div>
       </div>
@@ -169,7 +169,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="absolute inset-x-[-10vw] bottom-[2.5vw] z-40 -rotate-2">
+      <div className="absolute inset-x-[-4vw] bottom-[2vw] z-40 -rotate-2">
         <div className="flex h-[72px] items-center overflow-hidden bg-ink lg:h-[140px]">
           <motion.div
             initial={{ x: "0%" }}

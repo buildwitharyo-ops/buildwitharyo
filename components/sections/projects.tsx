@@ -49,7 +49,7 @@ const projects: Project[] = [
     description:
       "Internal business operating system — workflow automation, integrated company systems, and AI assistance woven into daily operations.",
     url: "https://acta-os.vercel.app",
-    image: "/images/projects/acta-os.png",
+    image: "/images/projects/acta-os-dashboard.png",
     status: "live",
   },
   {

@@ -67,7 +67,7 @@ export function Hero() {
   const marqueeHalf = [...marqueeItems, ...marqueeItems];
 
   return (
-    <section id="home" className="relative h-[800px] overflow-hidden lg:h-[920px]">
+    <section id="home" className="relative h-[640px] overflow-hidden sm:h-[800px] lg:h-[920px]">
       <div
         aria-hidden
         className="absolute inset-0 overflow-hidden bg-night"
@@ -87,12 +87,12 @@ export function Hero() {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="absolute inset-x-0 top-[112px] z-10 text-center text-[34px] font-extrabold uppercase leading-none tracking-[-0.02em] whitespace-nowrap text-white sm:top-[60px] sm:text-[clamp(44px,10.4vw,150px)] lg:top-[80px]"
+        className="absolute inset-x-0 top-[100px] z-10 text-center text-[11.5vw] font-extrabold uppercase leading-none tracking-[-0.02em] whitespace-nowrap text-white sm:top-[60px] lg:top-[80px]"
       >
         Aryo Pradana
       </motion.h1>
 
-      <div className="absolute inset-x-0 bottom-[56px] z-20 flex justify-center lg:bottom-[40px]">
+      <div className="absolute inset-x-0 bottom-[48px] z-20 flex justify-center lg:bottom-[40px]">
         <motion.div
           initial={{ opacity: 0, y: 90 }}
           animate={{ opacity: 1, y: 0 }}
@@ -105,7 +105,7 @@ export function Hero() {
             width={1024}
             height={1536}
             priority
-            className="h-auto w-[255px] max-w-none sm:w-[320px] lg:w-[430px]"
+            className="h-auto w-[232px] max-w-none sm:w-[320px] lg:w-[455px]"
           />
         </motion.div>
       </div>
@@ -113,7 +113,7 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 z-30">
         <div className="relative mx-auto h-full w-full max-w-[1184px]">
           <FloatingCard
-            className="left-[10%] top-[200px] w-[170px] -rotate-6 lg:left-[15%] lg:top-[372px] lg:w-[218px] lg:-rotate-[5deg]"
+            className="left-[10%] top-[162px] w-[170px] -rotate-6 lg:left-[15%] lg:top-[372px] lg:w-[218px] lg:-rotate-[5deg]"
             delay={0.5}
             float={-7}
           >
@@ -131,7 +131,7 @@ export function Hero() {
           </FloatingCard>
 
           <FloatingCard
-            className="left-[72%] top-[470px] w-[160px] rotate-[5deg] lg:left-[70.5%] lg:top-[524px] lg:w-[212px] lg:-rotate-[5deg]"
+            className="left-[72%] top-[350px] w-[160px] rotate-[5deg] lg:left-[70.5%] lg:top-[524px] lg:w-[212px] lg:-rotate-[5deg]"
             delay={0.65}
             float={8}
           >
@@ -152,7 +152,7 @@ export function Hero() {
           </FloatingCard>
 
           <FloatingCard
-            className="left-[-30px] top-[470px] w-[205px] -rotate-[20deg] lg:left-[9%] lg:top-[612px] lg:w-[280px] lg:rotate-[-3deg]"
+            className="left-[-30px] top-[380px] w-[205px] -rotate-[20deg] lg:left-[9%] lg:top-[612px] lg:w-[280px] lg:rotate-[-3deg]"
             delay={0.8}
             float={-6}
           >

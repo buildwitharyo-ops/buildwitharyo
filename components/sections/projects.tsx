@@ -38,7 +38,7 @@ const projects: Project[] = [
     title: "Avion Display",
     tags: ["Product Website"],
     description:
-      "Product website for interactive smartboard displays — product showcase and inquiry funnel.",
+      "Product website for AVION interactive smartboards — AI-powered 4K displays for classrooms and meeting rooms, presented through a clean, spec-rich showcase.",
     url: "https://aviondisplay.com",
     image: "/images/projects/avion.png",
     status: "live",
@@ -55,7 +55,8 @@ const projects: Project[] = [
   {
     title: "SpeakUp Mandarin",
     tags: ["EdTech"],
-    description: "Mandarin learning brand — platform launching soon.",
+    description:
+      "A conversation-first way for Indonesians to learn Mandarin — speak from day one instead of memorizing word lists. Platform launching soon.",
     url: "",
     domain: "speakupmandarin.id",
     image: "/images/projects/speakup.png",

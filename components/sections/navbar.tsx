@@ -23,12 +23,12 @@ export function Navbar() {
         <a href="#home" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
           <Image
             src="/images/logo-mark.png"
-            alt="Edwin Anderson logo"
+            alt="buildwitharyo logo"
             width={34}
             height={34}
             className="h-[30px] w-[30px] lg:h-[34px] lg:w-[34px]"
           />
-          <span className="text-[22px] font-bold tracking-tight text-white">Your Logo</span>
+          <span className="text-[22px] font-bold tracking-tight text-white">buildwitharyo</span>
         </a>
 
         <nav className="hidden items-center gap-10 lg:flex">

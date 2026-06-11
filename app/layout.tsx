@@ -8,10 +8,17 @@ const jakarta = Plus_Jakarta_Sans({
   weight: ["400", "500", "600", "700", "800"],
 });
 
+const siteDescription =
+  "Fullstack developer in Bali building production web apps, mobile apps, and AI automation for businesses worldwide. Next.js · React Native · Supabase.";
+
 export const metadata: Metadata = {
-  title: "Edwin Anderson — Frontend Developer",
-  description:
-    "Frontend developer specializing in React.js. Building digital products with visually engaging and seamless user interfaces.",
+  title: "Aryo Pradana — Fullstack Developer & AI Automation Engineer",
+  description: siteDescription,
+  openGraph: {
+    title: "Aryo Pradana — Fullstack Developer & AI Automation Engineer",
+    description: siteDescription,
+    images: ["/images/profil-aryo.png"],
+  },
 };
 
 export default function RootLayout({

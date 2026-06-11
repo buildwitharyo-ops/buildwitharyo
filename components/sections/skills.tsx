@@ -1,23 +1,61 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Image from "next/image";
 import { motion } from "motion/react";
+import { Workflow } from "lucide-react";
+import { SiClaude, SiExpo, SiNextdotjs, SiSupabase, SiTypescript } from "react-icons/si";
 import { cn } from "@/lib/utils";
 
 const skills = [
-  { name: "HTML", icon: "/images/tech/html.png" },
-  { name: "CSS", icon: "/images/tech/css.png" },
-  { name: "Javascript", icon: "/images/tech/js.png" },
-  { name: "React JS", icon: "/images/tech/react.png" },
-  { name: "Mongo DB", icon: "/images/tech/mongodb.png" },
-  { name: "Docker", icon: "/images/tech/docker.png" },
-].map((skill) => ({
-  ...skill,
-  description:
-    "Building the structure of web pages with semantic markup for accessibility.",
-  level: 90,
-}));
+  {
+    name: "Next.js / React",
+    icon: SiNextdotjs,
+    color: "text-ink",
+    description:
+      "Production-grade web apps with App Router, server components, and performance-first architecture.",
+    level: 92,
+  },
+  {
+    name: "TypeScript",
+    icon: SiTypescript,
+    color: "text-[#3178c6]",
+    description:
+      "Type-safe codebases that stay maintainable as products and teams grow.",
+    level: 88,
+  },
+  {
+    name: "React Native (Expo)",
+    icon: SiExpo,
+    color: "text-ink",
+    description:
+      "Cross-platform mobile apps sharing core logic with web in monorepo setups.",
+    level: 82,
+  },
+  {
+    name: "Supabase / PostgreSQL",
+    icon: SiSupabase,
+    color: "text-[#3fcf8e]",
+    description:
+      "Auth, row-level security, edge functions, and schema design for real production data.",
+    level: 88,
+  },
+  {
+    name: "AI Integration",
+    icon: SiClaude,
+    color: "text-[#d97757]",
+    description:
+      "LLM-powered product features and agentic workflows — coaching, content, and decision support (Claude, Gemini).",
+    level: 90,
+  },
+  {
+    name: "Workflow Automation",
+    icon: Workflow,
+    color: "text-grape",
+    description:
+      "Connecting APIs, webhooks, and AI agents into automations that remove manual operations.",
+    level: 85,
+  },
+];
 
 const DOTS = 3;
 
@@ -63,13 +101,7 @@ export function Skills() {
             >
               <div className="flex items-center gap-3">
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-100">
-                  <Image
-                    src={skill.icon}
-                    alt={`${skill.name} logo`}
-                    width={28}
-                    height={28}
-                    className="h-7 w-7 object-contain"
-                  />
+                  <skill.icon className={cn("size-6", skill.color)} aria-label={`${skill.name} logo`} />
                 </span>
                 <h3 className="text-lg font-bold text-ink">{skill.name}</h3>
               </div>

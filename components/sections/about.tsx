@@ -13,7 +13,7 @@ export function About() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="font-semibold text-ink"
         >
-          Hi, I&rsquo;m Edwin Anderson 👋
+          Hi, I&rsquo;m Aryo Pradana 👋
         </motion.p>
 
         <motion.h2
@@ -23,12 +23,16 @@ export function About() {
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
           className="mt-4 text-xl font-bold leading-snug tracking-tight text-ink md:text-[28px] md:leading-[1.5]"
         >
-          Building digital products with a focus on crafting visually engaging
-          and seamless user interfaces using{" "}
-          <span className="text-grape">React.js.</span>{" "}
+          I build production web apps, mobile apps, and{" "}
+          <span className="text-grape">AI automation workflows</span> — end to
+          end.{" "}
           <span className="text-fog">
-            Prioritizing responsive design, performance optimization, and
-            user-centric features to deliver exceptional web experiences.
+            Before software, I spent 5+ years engineering live sound and
+            integrating AV systems for companies, so I approach every build
+            like an operator: understand the business problem first, then ship
+            the technology that solves it. Today I help businesses launch fast
+            with modern stacks — Next.js, React Native, Supabase — with AI
+            built into both the product and the process.
           </span>
         </motion.h2>
       </div>

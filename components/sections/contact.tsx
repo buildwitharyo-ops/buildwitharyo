@@ -16,9 +16,9 @@ import {
 } from "@/components/ui/dialog";
 
 const contactItems = [
-  { icon: Smartphone, label: "+62 1234567890" },
-  { icon: Mail, label: "edwinanderson@email.com" },
-  { icon: MapPin, label: "Jakarta, Indonesia" },
+  { icon: Smartphone, label: "+62 878-3201-9418", href: "https://wa.me/6287832019418" },
+  { icon: Mail, label: "buildwitharyo@gmail.com", href: "mailto:buildwitharyo@gmail.com" },
+  { icon: MapPin, label: "Bali, Indonesia" },
 ];
 
 const dialogViews = {
@@ -92,20 +92,31 @@ export function Contact() {
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <h2 className="text-[40px] leading-[1.15] md:text-[56px] font-extrabold tracking-tight text-ink">
-            I&apos;ve been waiting <br className="hidden lg:block" />
-            for you.
+            Got a project <br className="hidden lg:block" />
+            in mind?
           </h2>
           <p className="mt-6 text-base font-semibold text-ink">
-            Fill in the form or Send us an email
+            Fill in the form or reach me directly — I reply fast.
           </p>
 
           <ul className="mt-10 flex flex-col gap-6">
-            {contactItems.map(({ icon: Icon, label }) => (
+            {contactItems.map(({ icon: Icon, label, href }) => (
               <li key={label} className="flex items-center gap-4">
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-lilac">
                   <Icon className="h-5 w-5 text-grape" />
                 </span>
-                <span className="text-base text-ink">{label}</span>
+                {href ? (
+                  <a
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="text-base text-ink transition-colors hover:text-grape"
+                  >
+                    {label}
+                  </a>
+                ) : (
+                  <span className="text-base text-ink">{label}</span>
+                )}
               </li>
             ))}
           </ul>
@@ -145,7 +156,7 @@ export function Contact() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your name"
+                placeholder="Enter your email"
                 className={`h-12 ${fieldClasses}`}
               />
             </div>
@@ -158,7 +169,7 @@ export function Contact() {
                 id="contact-message"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder="Enter your name"
+                placeholder="Write your message"
                 className={`min-h-[160px] resize-none py-3 ${fieldClasses}`}
               />
             </div>

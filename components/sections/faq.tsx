@@ -10,22 +10,49 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const question = "What's your approach to front-end development?";
-const answer =
-  "I focus on clean, maintainable code and prioritize user experience. My approach involves close collaboration with designers to ensure exact implementation and seamless interactions across all devices.";
-
-const faqItems = ["item-1", "item-2", "item-3", "item-4", "item-5"];
+const faqItems = [
+  {
+    id: "item-1",
+    question: "What do you actually build?",
+    answer:
+      "End-to-end web apps (Next.js), mobile apps (React Native / Expo), e-commerce, company websites, internal tools & business operating systems, and AI automation workflows.",
+  },
+  {
+    id: "item-2",
+    question: "How fast can you deliver?",
+    answer:
+      "I run an AI-accelerated development workflow, so most MVPs ship in weeks — not months — with a realistic buffer for testing and revisions. Exact timelines come with the proposal.",
+  },
+  {
+    id: "item-3",
+    question: "What's your tech stack?",
+    answer:
+      "Next.js, React Native (Expo), TypeScript, Supabase / PostgreSQL, Tailwind CSS, Vercel. AI integrations with Claude and Gemini, plus payment, shipping, and email integrations as needed.",
+  },
+  {
+    id: "item-4",
+    question: "How do we work together?",
+    answer:
+      "Discovery call → fixed proposal (scope, timeline, price) → build with regular check-ins → clean handoff where you own all accounts and infrastructure, with optional post-launch support.",
+  },
+  {
+    id: "item-5",
+    question: "Do you work with international clients?",
+    answer:
+      "Yes — fully remote and async-friendly, based in Bali, Indonesia (GMT+8), comfortable collaborating across US and EU time zones. All work and communication in English.",
+  },
+];
 
 function ContactCard() {
   return (
     <div className="rounded-2xl border border-neutral-200 bg-white p-6 lg:max-w-[300px]">
       <div className="flex size-16 items-center justify-center overflow-hidden rounded-full bg-tangerine">
         <Image
-          src="/images/edwin.png"
-          alt="Edwin Anderson"
+          src="/images/profil-aryo.png"
+          alt="Aryo Pradana"
           width={64}
           height={64}
-          className="size-16 rounded-full object-cover"
+          className="size-16 rounded-full object-cover object-top"
         />
       </div>
       <p className="mt-5 text-[15px] font-medium leading-relaxed text-ink">
@@ -72,18 +99,18 @@ export function Faq() {
 
             <div className="flex-1">
               <Accordion type="single" collapsible defaultValue="item-1">
-                {faqItems.map((id) => (
-                  <AccordionItem key={id} value={id} className="border-neutral-200">
+                {faqItems.map((item) => (
+                  <AccordionItem key={item.id} value={item.id} className="border-neutral-200">
                     {/* hidden! kills the chevrons baked into the shadcn trigger */}
                     <AccordionTrigger className="items-center gap-4 py-5 text-base font-semibold text-ink hover:no-underline data-[state=open]:text-grape **:data-[slot=accordion-trigger-icon]:hidden!">
-                      <span>{question}</span>
+                      <span>{item.question}</span>
                       <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-ink transition-colors group-aria-expanded/accordion-trigger:bg-grape group-aria-expanded/accordion-trigger:text-white">
                         <Plus className="size-4 group-aria-expanded/accordion-trigger:hidden" />
                         <Minus className="hidden size-4 group-aria-expanded/accordion-trigger:block" />
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="pb-5 pr-4 text-[15px] leading-relaxed text-fog lg:pr-14">
-                      {answer}
+                      {item.answer}
                     </AccordionContent>
                   </AccordionItem>
                 ))}

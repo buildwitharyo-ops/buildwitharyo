@@ -3,21 +3,25 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { Star, BadgeCheck } from "lucide-react";
+import { SiNextdotjs, SiReact, SiSupabase, SiTypescript } from "react-icons/si";
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
 
 const marqueeItems = [
-  "Frontend Developer",
-  "Expert React",
-  "Programmers",
-  "Mobile Developer",
+  "Fullstack Developer",
+  "AI Automation",
+  "Next.js",
+  "React Native",
+  "Supabase",
+  "TypeScript",
+  "Workflow Automation",
 ];
 
-const avatars = [
-  "/images/avatar-1.jpg",
-  "/images/avatar-2.jpg",
-  "/images/avatar-3.jpg",
-  "/images/avatar-4.jpg",
+const stack = [
+  { label: "Next.js", icon: SiNextdotjs, color: "text-white" },
+  { label: "React", icon: SiReact, color: "text-[#61dafb]" },
+  { label: "Supabase", icon: SiSupabase, color: "text-[#3fcf8e]" },
+  { label: "TypeScript", icon: SiTypescript, color: "text-[#4c9aff]" },
 ];
 
 function Sparkle({ className }: { className?: string }) {
@@ -85,7 +89,7 @@ export function Hero() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="absolute inset-x-0 top-[112px] z-10 text-center text-[34px] font-extrabold uppercase leading-none tracking-[-0.02em] whitespace-nowrap text-white sm:top-[60px] sm:text-[clamp(44px,10.4vw,150px)] lg:top-[80px]"
       >
-        Edwin Anderson
+        Aryo Pradana
       </motion.h1>
 
       <div className="absolute inset-x-0 bottom-[56px] z-20 flex justify-center lg:bottom-[40px]">
@@ -96,12 +100,12 @@ export function Hero() {
           className="shrink-0"
         >
           <Image
-            src="/images/edwin.png"
-            alt="Edwin Anderson"
-            width={1600}
-            height={1600}
+            src="/images/profil-aryo.png"
+            alt="Aryo Pradana"
+            width={1024}
+            height={1536}
             priority
-            className="h-auto w-[290px] max-w-none sm:w-[440px] lg:w-[760px]"
+            className="h-auto w-[235px] max-w-none sm:w-[320px] lg:w-[430px]"
           />
         </motion.div>
       </div>
@@ -114,14 +118,14 @@ export function Hero() {
             float={-7}
           >
             <div className="p-3.5 lg:p-5">
-              <p className="text-[22px] font-bold text-white lg:text-[32px]">5.0</p>
+              <p className="text-[22px] font-bold text-white lg:text-[32px]">5+</p>
               <div className="mt-1.5 flex gap-1 lg:gap-1.5">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} className="h-3.5 w-3.5 fill-tangerine text-tangerine lg:h-[19px] lg:w-[19px]" />
                 ))}
               </div>
               <p className="mt-2 text-[11px] leading-snug text-white/70 lg:mt-3 lg:text-[15px] lg:leading-6">
-                Many Client Trust with me
+                Years building with technology
               </p>
             </div>
           </FloatingCard>
@@ -132,18 +136,16 @@ export function Hero() {
             float={8}
           >
             <div className="p-3.5 lg:p-5">
-              <p className="text-[22px] font-bold text-white lg:text-[34px]">50+</p>
-              <p className="mt-1 text-[11px] text-white/70 lg:text-base lg:text-white/85">Global Clients</p>
-              <div className="mt-2.5 hidden -space-x-2 lg:flex lg:-space-x-3">
-                {avatars.map((src) => (
-                  <Image
-                    key={src}
-                    src={src}
-                    alt=""
-                    width={52}
-                    height={52}
-                    className="h-8 w-8 rounded-full object-cover lg:h-[46px] lg:w-[46px]"
-                  />
+              <p className="text-[15px] font-bold text-white lg:text-[20px]">Built with</p>
+              <div className="mt-2.5 flex gap-1.5 lg:gap-2">
+                {stack.map(({ label, icon: Icon, color }) => (
+                  <span
+                    key={label}
+                    title={label}
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/10 lg:h-[42px] lg:w-[42px]"
+                  >
+                    <Icon className={cn("size-4 lg:size-5", color)} aria-label={label} />
+                  </span>
                 ))}
               </div>
             </div>
@@ -156,11 +158,11 @@ export function Hero() {
           >
             <div className="px-5 py-4 lg:px-6 lg:py-5">
               <p className="text-[15px] font-bold text-white lg:text-[19px]">
-                Frontend Developer
+                Fullstack Developer
               </p>
               <div className="mt-1.5 flex items-center gap-1.5">
                 <BadgeCheck className="h-4 w-4 fill-grape-light text-white lg:h-5 lg:w-5" />
-                <p className="text-[11px] text-white/70 lg:text-sm">React Expert</p>
+                <p className="text-[11px] text-white/70 lg:text-sm">AI Automation Engineer</p>
               </div>
             </div>
           </FloatingCard>

@@ -2,21 +2,43 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { ChevronsRight, Mail, Star } from "lucide-react";
+import { ChevronsRight, Mail, Star, Workflow } from "lucide-react";
+import {
+  SiClaude,
+  SiExpo,
+  SiNextdotjs,
+  SiPostgresql,
+  SiReact,
+  SiSupabase,
+  SiTailwindcss,
+  SiTypescript,
+  SiVercel,
+} from "react-icons/si";
 import { cn } from "@/lib/utils";
 
 const chipRows = [
-  { chips: ["React Expert", "Fullstack Developer", "Resposive Design"], duration: 26, reverse: false },
-  { chips: ["5 Years Experience", "React Expert", "Fullstack Developer"], duration: 30, reverse: true },
-  { chips: ["Clean Code", "Performance Optimation", "Resposive Design"], duration: 28, reverse: false },
+  { chips: ["Next.js", "React Native", "TypeScript"], duration: 26, reverse: false },
+  { chips: ["Supabase", "AI Integration", "Workflow Automation"], duration: 30, reverse: true },
+  { chips: ["Clean Architecture", "Performance", "AI Integration"], duration: 28, reverse: false },
 ];
 
-const techIcons = ["css", "js", "html", "express", "cube", "typescript", "react", "docker", "postgresql", "mongodb"];
+const techIcons = [
+  { label: "Next.js", icon: SiNextdotjs, color: "text-white" },
+  { label: "React", icon: SiReact, color: "text-[#61dafb]" },
+  { label: "TypeScript", icon: SiTypescript, color: "text-[#4c9aff]" },
+  { label: "Supabase", icon: SiSupabase, color: "text-[#3fcf8e]" },
+  { label: "Expo", icon: SiExpo, color: "text-white" },
+  { label: "Tailwind CSS", icon: SiTailwindcss, color: "text-[#38bdf8]" },
+  { label: "Vercel", icon: SiVercel, color: "text-white" },
+  { label: "PostgreSQL", icon: SiPostgresql, color: "text-[#699eca]" },
+  { label: "Claude", icon: SiClaude, color: "text-[#d97757]" },
+  { label: "Workflow Automation", icon: Workflow, color: "text-grape-light" },
+];
 
 const stats = [
-  { value: "50+", label: "Global Client’s Handle" },
-  { value: "99%", label: "Client Satisfaction Rate" },
-  { value: "100+", label: "Project Delivered" },
+  { value: "10+", label: "Projects & Systems Delivered" },
+  { value: "4", label: "Products Live in Production" },
+  { value: "100%", label: "End-to-End Ownership" },
 ];
 
 function BentoCard({
@@ -73,7 +95,7 @@ export function Bento() {
           <BentoCard className="flex flex-col overflow-hidden bg-gradient-to-b from-[#E48B2C] to-[#E17B0E] p-8 md:h-[384px]">
             <h3 className="text-[28px] font-extrabold tracking-tight text-white">Why Choose Me</h3>
             <p className="mt-3 max-w-[300px] text-sm leading-7 text-white/90">
-              Delivering excellence with innovative solutions and seamless execution.
+              From idea to production — fast, end to end, and built around your business.
             </p>
             <div className="-mx-8 mt-10 space-y-4 md:mt-auto">
               {chipRows.map((row) => (
@@ -90,50 +112,37 @@ export function Bento() {
               ))}
             </div>
             <p className="mt-5 text-sm leading-7 text-white/60">
-              Mastering modern technologies to deliver impactful and efficient solutions
+              Modern stack, shipped with an AI-accelerated workflow.
             </p>
             <div className="mt-8 grid grid-cols-5 gap-x-3 gap-y-6 md:mt-auto">
-              {techIcons.map((name) => (
+              {techIcons.map(({ label, icon: Icon, color }) => (
                 <div
-                  key={name}
+                  key={label}
+                  title={label}
                   className="flex aspect-square items-center justify-center rounded-full border border-white/10 bg-white/5"
                 >
-                  <Image
-                    src={`/images/tech/${name}.png`}
-                    alt={name}
-                    width={30}
-                    height={30}
-                    className="size-[30px] object-contain"
-                  />
+                  <Icon className={cn("size-[26px]", color)} aria-label={label} />
                 </div>
               ))}
             </div>
           </BentoCard>
 
-          <BentoCard delay={0.16} className="relative h-[360px] overflow-hidden md:h-[384px]">
-            <Image
-              src="/images/edwin-working.jpg"
-              alt="Edwin working at his desk"
-              width={640}
-              height={640}
-              className="absolute inset-0 h-full w-full object-cover"
+          <BentoCard delay={0.16} className="relative h-[360px] overflow-hidden bg-charcoal md:h-[384px]">
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(102,0,235,0.45),transparent_65%)]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/30 to-ink/10" />
-            <div className="absolute inset-0 flex items-center justify-center pb-20">
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1.5px)] [background-size:14px_14px]"
+            />
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
               <h3 className="text-center text-[28px] font-extrabold leading-snug tracking-tight text-white">
                 5+ Years
                 <br />
                 Experience
               </h3>
-            </div>
-            <div className="absolute inset-x-0 bottom-4 flex justify-center">
-              <Image
-                src="/images/work-showcase.jpg"
-                alt="Recent work showcase"
-                width={1260}
-                height={464}
-                className="w-[86%] rounded-xl border border-white/30"
-              />
+              <p className="mt-2 text-sm text-white/70">in tech &amp; systems engineering</p>
             </div>
           </BentoCard>
 
@@ -143,11 +152,11 @@ export function Bento() {
               className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.14)_1px,transparent_1.5px)] [background-size:12px_12px]"
             />
             <p className="absolute inset-x-0 top-[10%] text-center font-extrabold uppercase leading-[0.95] text-tangerine">
-              <span className="block text-[64px] tracking-[0.08em] md:text-[82px]">Edwin</span>
-              <span className="block text-[50px] tracking-tight md:text-[68px]">Anderson</span>
+              <span className="block text-[64px] tracking-[0.08em] md:text-[78px]">Aryo</span>
+              <span className="block text-[50px] tracking-tight md:text-[64px]">Pradana</span>
             </p>
             <div className="absolute inset-x-0 bottom-0 flex justify-center">
-              <Image src="/images/edwin.png" alt="Edwin Anderson" width={640} height={640} className="w-[92%] max-w-[360px]" />
+              <Image src="/images/profil-aryo.png" alt="Aryo Pradana" width={512} height={768} className="w-[62%] max-w-[245px]" />
             </div>
             <div className="absolute inset-x-0 bottom-6 flex justify-center">
               <motion.a

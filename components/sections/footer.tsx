@@ -72,15 +72,15 @@ export function Footer() {
           <a href="#home" className="flex items-center gap-2.5">
             <Image
               src="/images/logo-mark.png"
-              alt="Edwin Anderson logo"
+              alt="buildwitharyo logo"
               width={30}
               height={30}
               className="h-[30px] w-[30px]"
             />
-            <span className="text-lg font-bold tracking-tight text-white">Your Logo</span>
+            <span className="text-lg font-bold tracking-tight text-white">buildwitharyo</span>
           </a>
           <p className="text-sm text-white/80">
-            &copy; 2025 Edwin Anderson. All rights reserved.
+            &copy; 2026 Aryo Pradana &middot; buildwitharyo. All rights reserved.
           </p>
         </div>
 

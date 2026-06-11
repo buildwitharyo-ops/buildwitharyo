@@ -4,13 +4,13 @@ import { motion } from "motion/react";
 import { Check, X } from "lucide-react";
 
 const skills = [
-  "React Expert",
-  "Perfect Pixel",
-  "TypeScript Proficiency",
-  "Clean, Maintainable Code",
-  "Performance Optimization",
-  "Responsive Website",
-  "UI Design Proficiency (Figma)",
+  "AI-accelerated delivery — days, not months",
+  "True fullstack ownership: frontend, backend, database, deploy",
+  "Business-operator mindset (5+ years running real operations)",
+  "AI & automation designed in from day one",
+  "Clean handoff — you own your infrastructure & accounts",
+  "Direct line to the builder — no agency layers",
+  "Performance, responsive & SEO fundamentals by default",
 ];
 
 function Mark({ pass }: { pass: boolean }) {
@@ -64,9 +64,9 @@ export function Comparison() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.06, ease: "easeOut" }}
-              className="grid h-[72px] grid-cols-[2.8fr_1fr_1fr] items-center border-b border-neutral-200 last:border-b-0 md:grid-cols-3"
+              className="grid min-h-[72px] grid-cols-[2.8fr_1fr_1fr] items-center border-b border-neutral-200 py-2 last:border-b-0 md:grid-cols-3"
             >
-              <span className="pl-4 text-left text-[13px] font-medium text-ink md:pl-[140px] md:text-[15px]">
+              <span className="pl-4 text-left text-[13px] font-medium text-ink md:pl-[100px] md:text-[15px]">
                 {skill}
               </span>
               <span className="flex justify-center">

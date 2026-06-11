@@ -1,16 +1,33 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "motion/react";
 
-const description =
-  "Built responsive web interfaces using modern frameworks like React.js, ensuring seamless integration with backend systems. Optimized performance, implemented accessible designs, and delivered clean, reusable code to enhance user experience and scalability.";
-
 const jobs = [
-  { company: "Trustpilot", logo: "/images/logos/logo-trustpilot.png", logoWidth: 132 },
-  { company: "Postman", logo: "/images/logos/logo-postman.png", logoWidth: 111 },
-  { company: "Spotify", logo: "/images/logos/logo-spotify.png", logoWidth: 121 },
-].map((job) => ({ ...job, role: "Frontend Developer", years: "2021-2024" }));
+  {
+    company: "buildwitharyo",
+    wordmark: "buildwitharyo",
+    role: "Fullstack Developer & AI Automation · Founder",
+    years: "2024 — Present",
+    description:
+      "Design and ship production web & mobile products and AI automation for businesses — from e-commerce with payment and shipping integration to internal business operating systems. Full lifecycle ownership: discovery, architecture, build (Next.js, React Native, Supabase), deployment, and post-launch iteration.",
+  },
+  {
+    company: "ACTA",
+    wordmark: "ACTA",
+    role: "Founder & AV Systems Integrator",
+    years: "2021 — Present",
+    description:
+      "Lead AV technology integrations that make company operations more efficient and reduce long-term cost. Translate business requirements into system architecture and manage delivery end to end — the operator's perspective that now shapes how I build software.",
+  },
+  {
+    company: "ARKA",
+    wordmark: "ARKA · Live Event Production",
+    role: "Sound Engineer",
+    years: "2018 — 2023",
+    description:
+      "5+ years engineering live audio for events and productions — environments where complex systems must work the first time, in real time. Built the signal-flow thinking, fast troubleshooting, and calm-under-pressure execution I bring to every codebase.",
+  },
+];
 
 export function Experience() {
   return (
@@ -37,13 +54,9 @@ export function Experience() {
               className="grid grid-cols-[24px_minmax(0,1fr)] gap-x-4 md:grid-cols-[232px_40px_minmax(0,1fr)] md:gap-x-0"
             >
               <div className="col-start-2 md:col-start-1 md:row-start-1">
-                <Image
-                  src={job.logo}
-                  alt={`${job.company} logo`}
-                  width={job.logoWidth}
-                  height={36}
-                  className="h-8 w-auto md:h-9"
-                />
+                <span className="inline-flex h-8 items-center rounded-full border border-neutral-200 bg-neutral-50 px-4 text-sm font-bold tracking-tight text-ink md:h-9">
+                  {job.wordmark}
+                </span>
                 <p className="mt-2 text-base font-bold text-ink md:mt-7">{job.company}</p>
                 <p className="mt-1.5 text-sm text-fog md:mt-2">{job.years}</p>
               </div>
@@ -64,7 +77,7 @@ export function Experience() {
               <div className="col-start-2 mt-5 md:col-start-3 md:row-start-1 md:mt-0 md:pl-4">
                 <h3 className="text-lg font-bold text-ink md:leading-10">{job.role}</h3>
                 <p className="mt-3 max-w-3xl text-base leading-7 text-fog md:mt-4 md:text-[15px] md:leading-[30px]">
-                  {description}
+                  {job.description}
                 </p>
               </div>
             </motion.li>

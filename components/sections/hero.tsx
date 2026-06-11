@@ -70,7 +70,7 @@ export function Hero() {
     <section id="home" className="relative h-[800px] overflow-hidden lg:h-[920px]">
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 bottom-[44px] overflow-hidden bg-night lg:bottom-[70px]"
+        className="absolute inset-0 overflow-hidden bg-night"
       >
         <div className="absolute left-1/2 bottom-[-160px] h-[760px] w-[980px] -translate-x-1/2 rounded-full bg-grape/40 blur-[200px]" />
         <div className="absolute left-1/2 bottom-[60px] h-[420px] w-[620px] -translate-x-1/2 rounded-full bg-grape-light/25 blur-[120px]" />
@@ -169,7 +169,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="absolute inset-x-[-40px] bottom-[2px] z-40 -rotate-2 lg:bottom-[5px]">
+      <div className="absolute inset-x-[-10vw] bottom-[2.5vw] z-40 -rotate-2">
         <div className="flex h-[72px] items-center overflow-hidden bg-ink lg:h-[140px]">
           <motion.div
             initial={{ x: "0%" }}

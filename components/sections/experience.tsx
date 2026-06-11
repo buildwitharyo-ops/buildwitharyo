@@ -1,11 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 
 const jobs = [
   {
     company: "buildwitharyo",
-    wordmark: "buildwitharyo",
+    logo: "/images/logo-mark.png",
+    logoClass: "h-9 w-9 rounded-lg bg-night p-1.5",
     role: "Fullstack Developer & AI Automation · Founder",
     years: "2024 — Present",
     description:
@@ -13,15 +15,17 @@ const jobs = [
   },
   {
     company: "ACTA",
-    wordmark: "ACTA",
+    logo: "/images/logos/acta.png",
+    logoClass: "h-12 w-auto",
     role: "Founder & AV Systems Integrator",
     years: "2021 — Present",
     description:
       "Lead AV technology integrations that make company operations more efficient and reduce long-term cost. Translate business requirements into system architecture and manage delivery end to end — the operator's perspective that now shapes how I build software.",
   },
   {
-    company: "ARKA",
-    wordmark: "ARKA · Live Event Production",
+    company: "ARKA Production",
+    logo: "/images/logos/arka.png",
+    logoClass: "h-12 w-auto",
     role: "Sound Engineer",
     years: "2018 — 2023",
     description:
@@ -54,10 +58,21 @@ export function Experience() {
               className="grid grid-cols-[24px_minmax(0,1fr)] gap-x-4 md:grid-cols-[232px_40px_minmax(0,1fr)] md:gap-x-0"
             >
               <div className="col-start-2 md:col-start-1 md:row-start-1">
-                <span className="inline-flex h-8 items-center rounded-full border border-neutral-200 bg-neutral-50 px-4 text-sm font-bold tracking-tight text-ink md:h-9">
-                  {job.wordmark}
-                </span>
-                <p className="mt-2 text-base font-bold text-ink md:mt-7">{job.company}</p>
+                <div className="flex items-center gap-2.5">
+                  <Image
+                    src={job.logo}
+                    alt={`${job.company} logo`}
+                    width={160}
+                    height={145}
+                    className={job.logoClass}
+                  />
+                  {job.company === "buildwitharyo" && (
+                    <span className="text-[17px] font-bold tracking-tight text-ink">
+                      buildwitharyo
+                    </span>
+                  )}
+                </div>
+                <p className="mt-2 text-base font-bold text-ink md:mt-6">{job.company}</p>
                 <p className="mt-1.5 text-sm text-fog md:mt-2">{job.years}</p>
               </div>
 

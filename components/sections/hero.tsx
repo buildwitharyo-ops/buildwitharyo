@@ -110,9 +110,10 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* 5+ rating sits BEHIND the photo on mobile (z below the photo) so the
-          transparent cutout reveals it in empty space but the head occludes it */}
-      <div className="pointer-events-none absolute inset-0 z-[15] lg:z-30">
+      {/* 5+ rating sits BEHIND the headline and photo on mobile (z below both) so
+          the transparent cutout reveals it in empty space, while the name and
+          head stay in front */}
+      <div className="pointer-events-none absolute inset-0 z-[5] lg:z-30">
         <div className="relative mx-auto h-full w-full max-w-[1184px]">
           <FloatingCard
             className="left-[7%] top-[148px] w-[168px] -rotate-6 lg:left-[15%] lg:top-[372px] lg:w-[218px] lg:-rotate-[5deg]"
@@ -158,17 +159,17 @@ export function Hero() {
           </FloatingCard>
 
           <FloatingCard
-            className="left-[3%] top-[394px] w-[196px] -rotate-[14deg] lg:left-[9%] lg:top-[612px] lg:w-[280px] lg:rotate-[-3deg]"
+            className="left-[3%] top-[400px] w-[174px] -rotate-[14deg] lg:left-[9%] lg:top-[612px] lg:w-[280px] lg:rotate-[-3deg]"
             delay={0.8}
             float={-6}
           >
-            <div className="px-5 py-4 lg:px-6 lg:py-5">
-              <p className="text-[15px] font-bold text-white lg:text-[19px]">
+            <div className="px-4 py-3 lg:px-6 lg:py-5">
+              <p className="text-[13.5px] font-bold text-white lg:text-[19px]">
                 Fullstack Developer
               </p>
-              <div className="mt-1.5 flex items-center gap-1.5">
-                <BadgeCheck className="h-4 w-4 fill-grape-light text-white lg:h-5 lg:w-5" />
-                <p className="text-[11px] text-white/70 lg:text-sm">AI Automation Engineer</p>
+              <div className="mt-1 flex items-center gap-1.5">
+                <BadgeCheck className="h-3.5 w-3.5 fill-grape-light text-white lg:h-5 lg:w-5" />
+                <p className="text-[10px] text-white/70 lg:text-sm">AI Automation Engineer</p>
               </div>
             </div>
           </FloatingCard>

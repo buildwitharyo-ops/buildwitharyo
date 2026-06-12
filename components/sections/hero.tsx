@@ -105,7 +105,7 @@ export function Hero() {
             width={1024}
             height={1536}
             priority
-            className="h-auto w-[232px] max-w-none sm:w-[320px] lg:w-[455px]"
+            className="h-auto w-[280px] max-w-none sm:w-[360px] lg:w-[500px]"
           />
         </motion.div>
       </div>
@@ -113,7 +113,7 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 z-30">
         <div className="relative mx-auto h-full w-full max-w-[1184px]">
           <FloatingCard
-            className="left-[10%] top-[162px] w-[170px] -rotate-6 lg:left-[15%] lg:top-[372px] lg:w-[218px] lg:-rotate-[5deg]"
+            className="left-[8%] top-[150px] w-[170px] -rotate-6 lg:left-[15%] lg:top-[372px] lg:w-[218px] lg:-rotate-[5deg]"
             delay={0.5}
             float={-7}
           >
@@ -131,7 +131,7 @@ export function Hero() {
           </FloatingCard>
 
           <FloatingCard
-            className="left-[72%] top-[350px] w-[160px] rotate-[5deg] lg:left-[70.5%] lg:top-[524px] lg:w-[212px] lg:-rotate-[5deg]"
+            className="left-[55%] top-[332px] w-[158px] rotate-[5deg] lg:left-[70.5%] lg:top-[524px] lg:w-[212px] lg:-rotate-[5deg]"
             delay={0.65}
             float={8}
           >
@@ -152,7 +152,7 @@ export function Hero() {
           </FloatingCard>
 
           <FloatingCard
-            className="left-[-30px] top-[380px] w-[205px] -rotate-[20deg] lg:left-[9%] lg:top-[612px] lg:w-[280px] lg:rotate-[-3deg]"
+            className="left-[-26px] top-[396px] w-[200px] -rotate-[18deg] lg:left-[9%] lg:top-[612px] lg:w-[280px] lg:rotate-[-3deg]"
             delay={0.8}
             float={-6}
           >
@@ -169,7 +169,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="absolute inset-x-[-4vw] bottom-[2vw] z-40 -rotate-2">
+      <div className="absolute inset-x-[-3vw] bottom-[1.4vw] z-40 -rotate-[1.5deg]">
         <div className="flex h-[72px] items-center overflow-hidden bg-ink lg:h-[140px]">
           <motion.div
             initial={{ x: "0%" }}

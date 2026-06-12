@@ -27,7 +27,7 @@ const faqItems = [
     id: "item-3",
     question: "What's your tech stack?",
     answer:
-      "Next.js, React Native (Expo), TypeScript, Supabase / PostgreSQL, Tailwind CSS, Vercel. AI integrations with Claude and Gemini, plus payment, shipping, and email integrations as needed.",
+      "Next.js, Vite, React Native (Expo), TypeScript, Supabase / PostgreSQL, Tailwind CSS, Vercel. AI integrations with Claude and Gemini, plus payment, shipping, and email integrations as needed.",
   },
   {
     id: "item-4",
@@ -39,7 +39,7 @@ const faqItems = [
     id: "item-5",
     question: "Do you work with international clients?",
     answer:
-      "Yes — fully remote and async-friendly, based in Bali, Indonesia (GMT+8), comfortable collaborating across US and EU time zones. All work and communication in English.",
+      "Yes — fully remote and async-friendly, based in Jakarta, Indonesia (GMT+7), comfortable collaborating across US and EU time zones. All work and communication in English.",
   },
 ];
 

@@ -9,7 +9,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 const siteDescription =
-  "Fullstack developer in Bali building production web apps, mobile apps, and AI automation for businesses worldwide. Next.js · React Native · Supabase.";
+  "Fullstack developer in Jakarta building production web apps, mobile apps, and AI automation for businesses worldwide. Next.js · React Native · Supabase.";
 
 export const metadata: Metadata = {
   title: "Aryo Pradana — Fullstack Developer & AI Automation Engineer",

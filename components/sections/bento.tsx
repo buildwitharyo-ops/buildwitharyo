@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { ChevronsRight, Mail, Star, Workflow } from "lucide-react";
+import { ChevronsRight, Mail, Star } from "lucide-react";
 import {
   SiClaude,
   SiExpo,
@@ -13,6 +13,7 @@ import {
   SiTailwindcss,
   SiTypescript,
   SiVercel,
+  SiVite,
 } from "react-icons/si";
 import { cn } from "@/lib/utils";
 
@@ -32,7 +33,7 @@ const techIcons = [
   { label: "Vercel", icon: SiVercel, color: "text-white" },
   { label: "PostgreSQL", icon: SiPostgresql, color: "text-[#699eca]" },
   { label: "Claude", icon: SiClaude, color: "text-[#d97757]" },
-  { label: "Workflow Automation", icon: Workflow, color: "text-grape-light" },
+  { label: "Vite", icon: SiVite, color: "text-[#646cff]" },
 ];
 
 const stats = [

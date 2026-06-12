@@ -18,7 +18,7 @@ import {
 const contactItems = [
   { icon: Smartphone, label: "+62 878-3201-9418", href: "https://wa.me/6287832019418" },
   { icon: Mail, label: "buildwitharyo@gmail.com", href: "mailto:buildwitharyo@gmail.com" },
-  { icon: MapPin, label: "Bali, Indonesia" },
+  { icon: MapPin, label: "Jakarta, Indonesia" },
 ];
 
 const dialogViews = {

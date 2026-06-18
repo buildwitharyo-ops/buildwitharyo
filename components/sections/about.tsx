@@ -17,10 +17,10 @@ export function About() {
         </motion.p>
 
         <motion.h2
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 28, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
           className="mt-4 text-xl font-bold leading-snug tracking-tight text-ink md:text-[28px] md:leading-[1.5]"
         >
           I build production web apps, mobile apps, and{" "}

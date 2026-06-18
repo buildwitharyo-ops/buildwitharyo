@@ -2,9 +2,12 @@
 
 import { useRef, useState } from "react";
 import { motion } from "motion/react";
+import { RevealHeading } from "@/components/motion/reveal-heading";
 import { Workflow } from "lucide-react";
 import { SiClaude, SiExpo, SiNextdotjs, SiSupabase, SiTypescript } from "react-icons/si";
 import { cn } from "@/lib/utils";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "@/lib/gsap";
 
 const skills = [
   {
@@ -72,18 +75,35 @@ export function Skills() {
     setActiveDot(Math.min(DOTS - 1, Math.round(progress * (DOTS - 1))));
   }
 
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // bars fill as their card scrolls through, tied to scroll position
+  useGSAP(
+    () => {
+      gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.utils.toArray<HTMLElement>("[data-bar]").forEach((bar) => {
+          gsap.fromTo(
+            bar,
+            { width: "0%" },
+            {
+              width: `${bar.dataset.level}%`,
+              ease: "none",
+              scrollTrigger: { trigger: bar, start: "top 92%", end: "top 60%", scrub: true },
+            }
+          );
+        });
+      });
+    },
+    { scope: sectionRef }
+  );
+
   return (
-    <section id="skill" className="bg-white py-16 md:py-24">
+    <section ref={sectionRef} id="skill" className="bg-white py-16 md:py-24">
       <div className="mx-auto w-full max-w-[1184px] px-6 md:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+        <RevealHeading
+          text="My Profesional Skill"
           className="text-center text-3xl md:text-[40px] font-extrabold tracking-tight text-ink"
-        >
-          My Profesional Skill
-        </motion.h2>
+        />
 
         <div
           ref={trackRef}
@@ -110,11 +130,10 @@ export function Skills() {
 
               <div className="mt-6 flex items-center gap-4">
                 <div className="h-3 flex-1 overflow-hidden rounded-full bg-neutral-200">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    viewport={{ once: true, amount: 0.6 }}
-                    transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+                  <div
+                    data-bar
+                    data-level={skill.level}
+                    style={{ width: `${skill.level}%` }}
                     className="h-full rounded-full bg-grape"
                   />
                 </div>

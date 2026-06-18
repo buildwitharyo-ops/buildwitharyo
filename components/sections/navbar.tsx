@@ -3,7 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Mail, Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useMotionValueEvent, useScroll } from "motion/react";
+import { useMagnetic } from "@/hooks/use-magnetic";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -16,10 +18,25 @@ const navLinks = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { scrollY } = useScroll();
+  const hireMe = useMagnetic<HTMLSpanElement>(0.35);
+
+  useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 24));
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-night transition-shadow">
-      <div className="mx-auto flex h-[72px] w-full max-w-[1184px] items-center justify-between px-6 md:px-8 lg:h-[88px]">
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        scrolled ? "bg-night/80 shadow-lg shadow-black/20 backdrop-blur-md" : "bg-night"
+      )}
+    >
+      <div
+        className={cn(
+          "mx-auto flex w-full max-w-[1184px] items-center justify-between px-6 transition-all duration-300 md:px-8",
+          scrolled ? "h-[60px] lg:h-[68px]" : "h-[72px] lg:h-[88px]"
+        )}
+      >
         <a href="#home" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
           <Image
             src="/images/logo-mark.png"
@@ -43,15 +60,17 @@ export function Navbar() {
           ))}
         </nav>
 
-        <motion.a
-          href="#contact"
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.97 }}
-          className="hidden items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[15px] font-semibold text-ink lg:inline-flex"
-        >
-          <Mail className="size-[18px]" strokeWidth={2.25} />
-          Hire Me
-        </motion.a>
+        <span ref={hireMe} className="hidden lg:inline-block">
+          <motion.a
+            href="#contact"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[15px] font-semibold text-ink"
+          >
+            <Mail className="size-[18px]" strokeWidth={2.25} />
+            Hire Me
+          </motion.a>
+        </span>
 
         <button
           type="button"

@@ -1,11 +1,22 @@
 "use client";
 
+import { useRef, type ReactNode } from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import {
+  motion,
+  useAnimationFrame,
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+  useVelocity,
+} from "motion/react";
+import { useGSAP } from "@gsap/react";
 import { Star, BadgeCheck } from "lucide-react";
 import { SiNextdotjs, SiReact, SiSupabase, SiTypescript } from "react-icons/si";
+import { gsap } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
-import type { ReactNode } from "react";
 
 const marqueeItems = [
   "Fullstack Developer",
@@ -24,11 +35,89 @@ const stack = [
   { label: "TypeScript", icon: SiTypescript, color: "text-[#4c9aff]" },
 ];
 
+const headlineWords = ["Aryo", "Pradana"];
+
+// keeps the marquee offset looping inside a fixed range
+function wrap(min: number, max: number, v: number) {
+  const range = max - min;
+  return ((((v - min) % range) + range) % range) + min;
+}
+
 function Sparkle({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 22 28" className={className} fill="currentColor" aria-hidden>
       <path d="M11 0c1 7.8 4.2 12.2 10 14-5.8 1.8-9 6.2-10 14-1-7.8-4.2-12.2-10-14C6.8 12.2 10 7.8 11 0Z" />
     </svg>
+  );
+}
+
+function MarqueeItem({ item }: { item: string }) {
+  return (
+    <div className="flex items-center gap-8 lg:gap-14">
+      <span className="text-2xl font-extrabold tracking-tight whitespace-nowrap text-white lg:text-[44px]">
+        {item}
+      </span>
+      <Sparkle className="h-7 w-[22px] text-tangerine lg:h-10 lg:w-8" />
+    </div>
+  );
+}
+
+// scroll speeds it up and skews it; reduced motion gets the plain constant loop
+function VelocityMarquee({ items }: { items: string[] }) {
+  const baseVelocity = -2;
+  const { scrollY } = useScroll();
+  const scrollVelocity = useVelocity(scrollY);
+  const smooth = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
+  const factor = useTransform(smooth, [0, 1000], [0, 4], { clamp: false });
+  const skew = useTransform(smooth, [-1200, 1200], [5, -5], { clamp: true });
+  const baseX = useMotionValue(0);
+  const x = useTransform(baseX, (v) => `${wrap(-50, 0, v)}%`);
+
+  useAnimationFrame((_, delta) => {
+    let moveBy = baseVelocity * (delta / 1000);
+    moveBy += moveBy * factor.get();
+    baseX.set(baseX.get() + moveBy);
+  });
+
+  const row = [...items, ...items];
+  return (
+    <div className="flex h-[72px] items-center overflow-hidden bg-ink lg:h-[140px]">
+      <motion.div
+        style={{ x, skewX: skew }}
+        className="flex w-max items-center gap-8 pr-8 lg:gap-14 lg:pr-14"
+      >
+        {[...row, ...row].map((item, i) => (
+          <MarqueeItem key={i} item={item} />
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+function SimpleMarquee({ items }: { items: string[] }) {
+  const row = [...items, ...items];
+  return (
+    <div className="flex h-[72px] items-center overflow-hidden bg-ink lg:h-[140px]">
+      <motion.div
+        initial={{ x: "0%" }}
+        animate={{ x: "-50%" }}
+        transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
+        className="flex w-max items-center gap-8 pr-8 lg:gap-14 lg:pr-14"
+      >
+        {[...row, ...row].map((item, i) => (
+          <MarqueeItem key={i} item={item} />
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+function Marquee({ items }: { items: string[] }) {
+  const reduce = useReducedMotion();
+  return (
+    <div className="absolute inset-x-[-3vw] bottom-[1.4vw] z-40 -rotate-[1.5deg]">
+      {reduce ? <SimpleMarquee items={items} /> : <VelocityMarquee items={items} />}
+    </div>
   );
 }
 
@@ -63,17 +152,67 @@ function FloatingCard({
 }
 
 export function Hero() {
-  // doubled so the loop never shows a gap
-  const marqueeHalf = [...marqueeItems, ...marqueeItems];
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+
+      // headline rise + a slow breathing aurora — any screen, motion allowed
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.from("[data-hero-word]", {
+          yPercent: 120,
+          duration: 0.9,
+          ease: "power3.out",
+          stagger: 0.12,
+          delay: 0.1,
+        });
+        gsap.to("[data-hero='blob']", {
+          xPercent: () => gsap.utils.random(-10, 10),
+          yPercent: () => gsap.utils.random(-12, 12),
+          scale: () => gsap.utils.random(0.92, 1.12),
+          duration: 9,
+          ease: "sine.inOut",
+          repeat: -1,
+          repeatRefresh: true,
+          yoyo: true,
+          stagger: { each: 2, from: "random" },
+        });
+      });
+
+      // depth parallax as the hero scrolls away — desktop only
+      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          })
+          .to("[data-hero='headline']", { yPercent: -45, opacity: 0.5, ease: "none" }, 0)
+          .to("[data-hero='photo']", { yPercent: -8, ease: "none" }, 0)
+          .to("[data-hero='cards-back']", { y: -70, ease: "none" }, 0)
+          .to("[data-hero='cards-front']", { y: -130, ease: "none" }, 0);
+      });
+    },
+    { scope: sectionRef }
+  );
 
   return (
-    <section id="home" className="relative h-[640px] overflow-hidden sm:h-[800px] lg:h-[920px]">
-      <div
-        aria-hidden
-        className="absolute inset-0 overflow-hidden bg-night"
-      >
-        <div className="absolute left-1/2 bottom-[-160px] h-[760px] w-[980px] -translate-x-1/2 rounded-full bg-grape/40 blur-[200px]" />
-        <div className="absolute left-1/2 bottom-[60px] h-[420px] w-[620px] -translate-x-1/2 rounded-full bg-grape-light/25 blur-[120px]" />
+    <section
+      ref={sectionRef}
+      id="home"
+      className="relative h-[640px] overflow-hidden sm:h-[800px] lg:h-[920px]"
+    >
+      <div aria-hidden className="absolute inset-0 overflow-hidden bg-night">
+        <div className="absolute left-1/2 bottom-[-160px] -translate-x-1/2">
+          <div data-hero="blob" className="h-[760px] w-[980px] rounded-full bg-grape/40 blur-[200px]" />
+        </div>
+        <div className="absolute left-1/2 bottom-[60px] -translate-x-1/2">
+          <div data-hero="blob" className="h-[420px] w-[620px] rounded-full bg-grape-light/25 blur-[120px]" />
+        </div>
         <div className="absolute left-1/2 bottom-[-420px] h-[1300px] w-[1300px] -translate-x-1/2 rounded-full border-[90px] border-white/[0.04]" />
         <div className="absolute left-1/2 bottom-[-680px] h-[1900px] w-[1900px] -translate-x-1/2 rounded-full border-[110px] border-white/[0.04]" />
         <div className="absolute left-1/2 top-[52%] hidden h-[520px] w-[1100px] -translate-x-1/2 rounded-full border border-white/10 lg:block" />
@@ -83,16 +222,26 @@ export function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(10,2,24,0.55),transparent_50%)]" />
       </div>
 
-      <motion.h1
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+      <h1
+        data-hero="headline"
         className="absolute inset-x-0 top-[100px] z-10 text-center text-[11.5vw] font-extrabold uppercase leading-none tracking-[-0.02em] whitespace-nowrap text-white sm:top-[60px] lg:top-[80px]"
       >
-        Aryo Pradana
-      </motion.h1>
+        {headlineWords.map((word, i) => (
+          <span key={word} className="inline-block">
+            <span className="inline-block overflow-hidden pb-[0.12em] align-bottom -mb-[0.12em]">
+              <span data-hero-word className="inline-block">
+                {word}
+              </span>
+            </span>
+            {i < headlineWords.length - 1 ? " " : null}
+          </span>
+        ))}
+      </h1>
 
-      <div className="absolute inset-x-0 bottom-[48px] z-20 flex justify-center lg:bottom-[40px]">
+      <div
+        data-hero="photo"
+        className="absolute inset-x-0 bottom-[48px] z-20 flex justify-center lg:bottom-[40px]"
+      >
         <motion.div
           initial={{ opacity: 0, y: 90 }}
           animate={{ opacity: 1, y: 0 }}
@@ -111,7 +260,7 @@ export function Hero() {
       </div>
 
       {/* behind the photo on mobile, in front on desktop */}
-      <div className="pointer-events-none absolute inset-0 z-[5] lg:z-30">
+      <div data-hero="cards-back" className="pointer-events-none absolute inset-0 z-[5] lg:z-30">
         <div className="relative mx-auto h-full w-full max-w-[1184px]">
           <FloatingCard
             className="left-[7%] top-[148px] w-[168px] -rotate-6 lg:left-[15%] lg:top-[372px] lg:w-[218px] lg:-rotate-[5deg]"
@@ -133,7 +282,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 z-30">
+      <div data-hero="cards-front" className="pointer-events-none absolute inset-0 z-30">
         <div className="relative mx-auto h-full w-full max-w-[1184px]">
           <FloatingCard
             className="left-[58%] top-[332px] w-[158px] rotate-[5deg] lg:left-[70.5%] lg:top-[524px] lg:w-[212px] lg:-rotate-[5deg]"
@@ -174,25 +323,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="absolute inset-x-[-3vw] bottom-[1.4vw] z-40 -rotate-[1.5deg]">
-        <div className="flex h-[72px] items-center overflow-hidden bg-ink lg:h-[140px]">
-          <motion.div
-            initial={{ x: "0%" }}
-            animate={{ x: "-50%" }}
-            transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
-            className="flex w-max items-center gap-8 pr-8 lg:gap-14 lg:pr-14"
-          >
-            {[...marqueeHalf, ...marqueeHalf].map((item, i) => (
-              <div key={i} className="flex items-center gap-8 lg:gap-14">
-                <span className="text-2xl font-extrabold tracking-tight whitespace-nowrap text-white lg:text-[44px]">
-                  {item}
-                </span>
-                <Sparkle className="h-7 w-[22px] text-tangerine lg:h-10 lg:w-8" />
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </div>
+      <Marquee items={marqueeItems} />
     </section>
   );
 }

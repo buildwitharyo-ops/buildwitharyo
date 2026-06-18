@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion } from "motion/react";
+import { RevealHeading } from "@/components/motion/reveal-heading";
 import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -44,15 +45,10 @@ export function Testimonials() {
   return (
     <section id="testimonial" className="bg-white py-16 md:py-24">
       <div className="mx-auto w-full max-w-[1184px] px-6 md:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+        <RevealHeading
+          text="Success Stories from Clients"
           className="text-center text-3xl md:text-[40px] font-extrabold tracking-tight text-ink"
-        >
-          Success Stories from Clients
-        </motion.h2>
+        />
 
         <div
           ref={trackRef}

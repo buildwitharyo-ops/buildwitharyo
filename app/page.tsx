@@ -1,3 +1,4 @@
+import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { Navbar } from "@/components/sections/navbar";
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
@@ -14,6 +15,7 @@ import { Footer } from "@/components/sections/footer";
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />

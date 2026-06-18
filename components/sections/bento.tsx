@@ -16,6 +16,8 @@ import {
   SiVite,
 } from "react-icons/si";
 import { cn } from "@/lib/utils";
+import { useMagnetic } from "@/hooks/use-magnetic";
+import { useCountUp } from "@/hooks/use-count-up";
 
 const chipRows = [
   { chips: ["Next.js", "React Native", "TypeScript"], duration: 26, reverse: false },
@@ -88,7 +90,20 @@ function ChipMarquee({ chips, duration, reverse }: { chips: string[]; duration: 
   );
 }
 
+// counts up from zero on scroll-in, keeping any +/% suffix
+function Stat({ value, className }: { value: string; className?: string }) {
+  const match = value.match(/^(\d+)(.*)$/);
+  const ref = useCountUp<HTMLParagraphElement>(match ? Number(match[1]) : 0, match ? match[2] : "");
+  return (
+    <p ref={ref} className={className}>
+      {value}
+    </p>
+  );
+}
+
 export function Bento() {
+  const hireMe = useMagnetic<HTMLSpanElement>(0.3);
+
   return (
     <section className="bg-white py-10 md:py-14">
       <div className="mx-auto w-full max-w-[1184px] px-6 md:px-8">
@@ -160,15 +175,17 @@ export function Bento() {
               <Image src="/images/profil-aryo.png" alt="Aryo Pradana" width={512} height={768} className="w-[62%] max-w-[245px]" />
             </div>
             <div className="absolute inset-x-0 bottom-6 flex justify-center">
-              <motion.a
-                href="#contact"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex w-[64%] items-center justify-center gap-2 rounded-full bg-white py-3 text-[15px] font-semibold text-ink shadow-lg"
-              >
-                <Mail className="size-[18px]" strokeWidth={2.25} />
-                Hire Me
-              </motion.a>
+              <span ref={hireMe} className="inline-flex w-[64%]">
+                <motion.a
+                  href="#contact"
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white py-3 text-[15px] font-semibold text-ink shadow-lg"
+                >
+                  <Mail className="size-[18px]" strokeWidth={2.25} />
+                  Hire Me
+                </motion.a>
+              </span>
             </div>
           </BentoCard>
 
@@ -199,7 +216,7 @@ export function Bento() {
               <div className="mt-10 flex flex-col gap-7 md:mt-auto md:flex-row md:items-end md:gap-12">
                 {stats.map((stat) => (
                   <div key={stat.label}>
-                    <p className="text-[32px] font-extrabold leading-tight text-white">{stat.value}</p>
+                    <Stat value={stat.value} className="text-[32px] font-extrabold leading-tight text-white" />
                     <p className="mt-1 text-[13px] text-white/80">{stat.label}</p>
                   </div>
                 ))}

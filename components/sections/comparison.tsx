@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { RevealHeading } from "@/components/motion/reveal-heading";
 import { Check, X } from "lucide-react";
 
 const skills = [
@@ -15,7 +16,11 @@ const skills = [
 
 function Mark({ pass }: { pass: boolean }) {
   return (
-    <span
+    <motion.span
+      initial={{ scale: 0, rotate: -25 }}
+      whileInView={{ scale: 1, rotate: 0 }}
+      viewport={{ once: true, amount: 0.8 }}
+      transition={{ type: "spring", stiffness: 320, damping: 15, delay: 0.05 }}
       className={`flex h-6 w-6 items-center justify-center rounded-full md:h-7 md:w-7 ${
         pass ? "bg-tangerine" : "bg-fog"
       }`}
@@ -25,7 +30,7 @@ function Mark({ pass }: { pass: boolean }) {
       ) : (
         <X className="h-3.5 w-3.5 text-white md:h-4 md:w-4" strokeWidth={3} />
       )}
-    </span>
+    </motion.span>
   );
 }
 
@@ -33,15 +38,10 @@ export function Comparison() {
   return (
     <section className="bg-[#fafafa] py-16 md:py-24">
       <div className="mx-auto w-full max-w-[1184px] px-6 md:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+        <RevealHeading
+          text="Why Choose Me"
           className="text-center text-3xl md:text-[40px] font-extrabold tracking-tight text-ink"
-        >
-          Why Choose Me
-        </motion.h2>
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 32 }}

@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
+import { useGSAP } from "@gsap/react";
+import { RevealHeading } from "@/components/motion/reveal-heading";
+import { gsap } from "@/lib/gsap";
 
 type Project = {
   title: string;
@@ -85,32 +88,51 @@ function Thumbnail({ project }: { project: Project }) {
         </span>
       </div>
       {!missing && (
-        <Image
-          src={project.image}
-          alt={`${project.title} preview`}
-          width={760}
-          height={570}
-          onError={() => setMissing(true)}
-          className="relative h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-        />
+        <div data-parallax className="absolute inset-x-0 top-[-7.5%] bottom-[-7.5%] will-change-transform">
+          <Image
+            src={project.image}
+            alt={`${project.title} preview`}
+            width={760}
+            height={570}
+            onError={() => setMissing(true)}
+            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+          />
+        </div>
       )}
     </div>
   );
 }
 
 export function Projects() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // each thumbnail drifts slower than its card for a sense of depth
+  useGSAP(
+    () => {
+      gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
+          gsap.fromTo(
+            el,
+            { yPercent: -6 },
+            {
+              yPercent: 6,
+              ease: "none",
+              scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true },
+            }
+          );
+        });
+      });
+    },
+    { scope: sectionRef }
+  );
+
   return (
-    <section id="projects" className="bg-white py-16 md:py-24">
+    <section ref={sectionRef} id="projects" className="bg-white py-16 md:py-24">
       <div className="mx-auto w-full max-w-[1184px] px-6 md:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+        <RevealHeading
+          text="My Latest Work"
           className="text-center text-3xl md:text-[40px] font-extrabold tracking-tight text-ink"
-        >
-          My Latest Work
-        </motion.h2>
+        />
 
         <div className="mt-10 grid grid-cols-1 gap-10 md:mt-14 md:grid-cols-3 md:gap-6">
           {projects.map((project, i) => (

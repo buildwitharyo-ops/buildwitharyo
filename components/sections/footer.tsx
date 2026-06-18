@@ -85,15 +85,20 @@ export function Footer() {
         </div>
 
         <div className="flex items-center gap-3.5">
-          {socials.map(({ label, href, icon: Icon }) => (
-            <a
+          {socials.map(({ label, href, icon: Icon }, i) => (
+            <motion.a
               key={label}
               href={href}
               aria-label={label}
+              initial={{ opacity: 0, scale: 0.6 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
+              whileHover={{ y: -3 }}
               className="flex size-11 items-center justify-center rounded-full bg-grape text-white transition-colors hover:bg-grape-light"
             >
               <Icon />
-            </a>
+            </motion.a>
           ))}
         </div>
       </motion.div>

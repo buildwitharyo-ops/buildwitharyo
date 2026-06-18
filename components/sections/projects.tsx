@@ -54,13 +54,12 @@ const projects: Project[] = [
   },
   {
     title: "SpeakUp Mandarin",
-    tags: ["EdTech"],
+    tags: ["EdTech", "AI"],
     description:
-      "A conversation-first way for Indonesians to learn Mandarin — speak from day one instead of memorizing word lists. Platform launching soon.",
-    url: "",
-    domain: "speakupmandarin.id",
+      "Conversation-first Mandarin app for Indonesians — speak from day one with an AI Laoshi that listens and corrects your tones in real time, on an HSK 3.0 path from zero to confident. Streaks and daily speaking minutes keep the habit going.",
+    url: "https://speak-up-mandarin.vercel.app",
     image: "/images/projects/speakup.png",
-    status: "coming_soon",
+    status: "live",
   },
   {
     title: "KosManager",

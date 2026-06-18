@@ -63,7 +63,7 @@ function FloatingCard({
 }
 
 export function Hero() {
-  // each half of the marquee holds the list twice so it always outruns the viewport
+  // doubled so the loop never shows a gap
   const marqueeHalf = [...marqueeItems, ...marqueeItems];
 
   return (
@@ -110,9 +110,7 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* 5+ rating sits BEHIND the headline and photo on mobile (z below both) so
-          the transparent cutout reveals it in empty space, while the name and
-          head stay in front */}
+      {/* behind the photo on mobile, in front on desktop */}
       <div className="pointer-events-none absolute inset-0 z-[5] lg:z-30">
         <div className="relative mx-auto h-full w-full max-w-[1184px]">
           <FloatingCard

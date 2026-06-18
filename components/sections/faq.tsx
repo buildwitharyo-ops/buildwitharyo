@@ -101,7 +101,7 @@ export function Faq() {
               <Accordion type="single" collapsible defaultValue="item-1">
                 {faqItems.map((item) => (
                   <AccordionItem key={item.id} value={item.id} className="border-neutral-200">
-                    {/* hidden! kills the chevrons baked into the shadcn trigger */}
+                    {/* hide the default shadcn chevron */}
                     <AccordionTrigger className="items-center gap-4 py-5 text-base font-semibold text-ink hover:no-underline data-[state=open]:text-grape **:data-[slot=accordion-trigger-icon]:hidden!">
                       <span>{item.question}</span>
                       <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-ink transition-colors group-aria-expanded/accordion-trigger:bg-grape group-aria-expanded/accordion-trigger:text-white">

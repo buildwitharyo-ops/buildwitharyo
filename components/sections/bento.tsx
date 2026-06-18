@@ -65,7 +65,7 @@ function BentoCard({
 }
 
 function ChipMarquee({ chips, duration, reverse }: { chips: string[]; duration: number; reverse: boolean }) {
-  // list rendered twice so a -50% translate loops seamlessly
+  // doubled for the -50% loop
   const loop = [...chips, ...chips];
 
   return (
